@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Your shopping cart at Ginkgo Mart">
+  <title>Ginkgo Mart | Shopping Cart</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+  <header class="section-navbar">
+    <section class="top_txt">
+      <div class="head container">
+        <div class="head_txt">
+          <p>Sale is Live Hurry up!!</p>
+        </div>
+        <div class="sing_in_up">
+          <a href="#">SIGN IN</a>
+          <a href="#">SIGN UP</a>
+        </div>
+      </div>
+    </section>
+    <div class="container">
+      <div class="navbar-brand">
+        <a href="index.html">
+          <img src="/Images/ginkgomart lgo.png" alt="Ginkgo Mart logo" class="logo" width="80%" height="auto" />
+        </a>
+      </div>
+      <nav class="navbar">
+        <ul>
+          <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
+          <li class="nav-item"><a href="products.html" class="nav-link">Products</a></li>
+          <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
+          <li class="nav-item"><a href="about.html" class="nav-link">About</a></li>
+          <li class="nav-item">
+            <a href="addToCart.html" class="nav-link add-to-cart-button active" id="cartValue">
+              <i class="fa-solid fa-cart-shopping"> <span id="cartCount">0</span></i>
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <section class="section-cart container">
+    <div class="cart-header">
+      <h2 class="section-common--heading">Shopping Cart</h2>
+      <p class="section-common--subheading">Review your items before checkout</p>
+    </div>
+
+    <div class="cart-content">
+      <!-- Empty Cart Message -->
+      <div id="emptyCart" class="empty-cart">
+        <div class="empty-cart-icon">
+          <i class="fa-solid fa-cart-shopping"></i>
+        </div>
+        <h3>Your cart is empty</h3>
+        <p>Looks like you haven't added any items to your cart yet.</p>
+        <a href="products.html" class="btn">Continue Shopping</a>
+      </div>
+
+      <!-- Cart Items Container -->
+      <div id="cartContainer" class="cart-items-container" style="display: none;">
+        <div class="cart-items-header">
+          <div class="header-product">Product</div>
+          <div class="header-price">Price</div>
+          <div class="header-quantity">Quantity</div>
+          <div class="header-total">Total</div>
+          <div class="header-action">Action</div>
+        </div>
+        <div id="productCartContainer"></div>
+
+        <div class="cart-actions">
+          <button id="clearCart" class="btn btn-secondary">
+            <i class="fa-solid fa-trash"></i> Clear Cart
+          </button>
+          <a href="products.html" class="btn btn-outline">
+            <i class="fa-solid fa-arrow-left"></i> Continue Shopping
+          </a>
+        </div>
+      </div>
+
+      <!-- Cart Summary -->
+      <div id="cartSummary" class="cart-summary" style="display: none;">
+        <div class="productCartTotalElem">
+          <div class="productCartTotalElement">
+            <h3>Order Summary</h3>
+            <div class="productOrderTotal">
+              <div>
+                <p>Subtotal</p>
+                <p class="productSubTotal">₹0</p>
+              </div>
+              <div>
+                <p>Shipping</p>
+                <p class="productShipping">₹0</p>
+              </div>
+              <div>
+                <p>Tax (18%)</p>
+                <p class="productTax">₹0</p>
+              </div>
+              <div class="total-row">
+                <p><strong>Total</strong></p>
+                <p class="productFinalTotal"><strong>₹0</strong></p>
+              </div>
+            </div>
+            <button id="checkoutBtn" class="btn btn-checkout">
+              <i class="fa-solid fa-lock"></i> Proceed to Checkout
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Cart Item Template -->
+  <template id="cartItemTemplate">
+    <div class="cart-item cards">
+      <div class="card">
+        <div class="cart-item-image">
+          <img class="productImage" src="" alt="" />
+        </div>
+        <div class="cart-item-details">
+          <h3 class="productName"></h3>
+          <p class="productDescription"></p>
+        </div>
+        <div class="cart-item-price">
+          <p class="productPrice"></p>
+          <p class="productActualPrice"></p>
+        </div>
+        <div class="cart-item-quantity">
+          <div class="stockElement">
+            <button class="cartIncrement">+</button>
+            <p class="productQuantity">1</p>
+            <button class="cartDecrement">-</button>
+          </div>
+        </div>
+        <div class="cart-item-total">
+          <p class="itemTotal">₹0</p>
+        </div>
+        <div class="cart-item-action">
+          <button class="remove-to-cart-button">
+            <i class="fa-solid fa-trash"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </template>
+
+  <!-- Checkout Modal -->
+  <div id="checkoutModal" class="modal">
+    <div class="modal-content checkout-modal">
+      <span class="modal-close-btn">&times;</span>
+      <h2><i class="fa-solid fa-credit-card"></i> Checkout</h2>
+      
+      <form id="checkoutForm">
+        <div class="checkout-section">
+          <h3>Shipping Information</h3>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="fullName">Full Name *</label>
+              <input type="text" id="fullName" name="fullName" required />
+            </div>
+            <div class="form-group">
+              <label for="checkoutEmail">Email *</label>
+              <input type="email" id="checkoutEmail" name="email" required />
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="address">Address *</label>
+            <input type="text" id="address" name="address" placeholder="Street address" required />
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="city">City *</label>
+              <input type="text" id="city" name="city" required />
+            </div>
+            <div class="form-group">
+              <label for="pincode">Pincode *</label>
+              <input type="text" id="pincode" name="pincode" pattern="[0-9]{6}" required />
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="checkoutPhone">Phone *</label>
+            <input type="tel" id="checkoutPhone" name="phone" pattern="[0-9]{10}" required />
+          </div>
+        </div>
+
+        <div class="checkout-section">
+          <h3>Payment Method</h3>
+          <div class="payment-options">
+            <label class="payment-option">
+              <input type="radio" name="payment" value="cod" checked />
+              <span class="payment-label">
+                <i class="fa-solid fa-money-bill"></i> Cash on Delivery
+              </span>
+            </label>
+            <label class="payment-option">
+              <input type="radio" name="payment" value="upi" />
+              <span class="payment-label">
+                <i class="fa-solid fa-mobile-screen"></i> UPI Payment
+              </span>
+            </label>
+            <label class="payment-option">
+              <input type="radio" name="payment" value="card" />
+              <span class="payment-label">
+                <i class="fa-solid fa-credit-card"></i> Credit/Debit Card
+              </span>
+            </label>
+          </div>
+        </div>
+
+        <div class="checkout-total">
+          <p>Total Amount: <strong id="checkoutTotal">₹0</strong></p>
+        </div>
+
+        <button type="submit" class="btn btn-place-order">
+          <i class="fa-solid fa-check"></i> Place Order
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Order Success Modal -->
+  <div id="orderSuccessModal" class="modal">
+    <div class="modal-content">
+      <div class="modal-icon success">
+        <i class="fa-solid fa-check"></i>
+      </div>
+      <h2>Order Placed Successfully!</h2>
+      <p>Thank you for your order. Your order ID is: <strong id="orderId"></strong></p>
+      <p>We'll send you a confirmation email shortly.</p>
+      <a href="index.html" class="btn modal-close">Continue Shopping</a>
+    </div>
+  </div>
+
+  <footer class="section-footer">
+    <div class="footer-container container">
+      <div class="content_1">
+        <img src="/Images/ginkgomart lgo.png" alt="logo" />
+        <p>Welcome to Ginkgo Mart EcomStore, your ultimate destination for millet Products</p>
+        <img src="https://i.postimg.cc/Nj9dgJ98/cards.png" alt="cards" />
+      </div>
+      <div class="content_2">
+        <h4>SHOPPING</h4>
+        <a href="#">Millets Cafe</a>
+        <a href="#">Ginkgo Mart Store</a>
+        <a href="products.html">Products</a>
+        <a href="#">Sales & Discount</a>
+      </div>
+      <div class="content_3">
+        <h4>Experience</h4>
+        <a href="contact.html">Contact Us</a>
+        <a href="#">Payment Method</a>
+        <a href="#">Delivery</a>
+        <a href="#">Return and Exchange</a>
+      </div>
+      <div class="content_4">
+        <h4>NEWSLETTER</h4>
+        <p>Be the first to know about new<br />arrivals, sales & promos!</p>
+        <div class="f-mail">
+          <input type="email" placeholder="Your Email" />
+          <i class="bx bx-envelope"></i>
+        </div>
+        <hr />
+      </div>
+    </div>
+    <div class="f-design">
+      <div class="f-design-txt">
+        <p>Design and Code by Munish Kumar Sharma</p>
+      </div>
+    </div>
+  </footer>
+
+  <script type="module" src="js/cart.js"></script>
+</body>
+</html>

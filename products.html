@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Browse our wide selection of healthy millet products at Ginkgo Mart">
+  <title>Ginkgo Mart | Products</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+  <header class="section-navbar">
+    <section class="top_txt">
+      <div class="head container">
+        <div class="head_txt">
+          <p>Sale is Live Hurry up!!</p>
+        </div>
+        <div class="sing_in_up">
+          <a href="#">SIGN IN</a>
+          <a href="#">SIGN UP</a>
+        </div>
+      </div>
+    </section>
+    <div class="container">
+      <div class="navbar-brand">
+        <a href="index.html">
+          <img src="/Images/ginkgomart lgo.png" alt="Ginkgo Mart logo" class="logo" width="80%" height="auto" />
+        </a>
+      </div>
+      <nav class="navbar">
+        <ul>
+          <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
+          <li class="nav-item"><a href="products.html" class="nav-link active">Products</a></li>
+          <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
+          <li class="nav-item"><a href="about.html" class="nav-link">About</a></li>
+          <li class="nav-item">
+            <a href="addToCart.html" class="nav-link add-to-cart-button" id="cartValue">
+              <i class="fa-solid fa-cart-shopping"> <span id="cartCount">0</span></i>
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <section class="section-products-page container">
+    <div class="products-header">
+      <h2 class="section-common--heading">Our Products</h2>
+      <p class="section-common--subheading">Discover our range of healthy millet-based products</p>
+    </div>
+
+    <div class="products-filters">
+      <div class="search-box">
+        <input type="text" id="searchInput" placeholder="Search products..." />
+        <i class="fa-solid fa-search"></i>
+      </div>
+      <div class="filter-options">
+        <select id="sortSelect">
+          <option value="default">Sort By</option>
+          <option value="price-low">Price: Low to High</option>
+          <option value="price-high">Price: High to Low</option>
+          <option value="name">Name: A to Z</option>
+        </select>
+        <select id="priceFilter">
+          <option value="all">All Prices</option>
+          <option value="0-200">Under ₹200</option>
+          <option value="200-300">₹200 - ₹300</option>
+          <option value="300-500">₹300 & Above</option>
+        </select>
+      </div>
+    </div>
+
+    <div id="allProductsContainer" class="products-grid"></div>
+  </section>
+
+  <template id="productTemplate">
+    <div class="cards" id="cardValue">
+      <article class="information [card]">
+        <span class="category"></span>
+        <div class="imageContainer">
+          <img class="productImage" src="" alt="" />
+        </div>
+        <h2 class="productName"></h2>
+        <div class="productRating">
+          <i class="fa-solid fa-star"></i>
+          <i class="fa-solid fa-star"></i>
+          <i class="fa-solid fa-star"></i>
+          <i class="fa-solid fa-star"></i>
+          <i class="fa-solid fa-star"></i>
+        </div>
+        <p class="productDescription"></p>
+        <div class="productPriceElement">
+          <p class="productPrice"></p>
+          <p class="productActualPrice"></p>
+        </div>
+        <div class="productStockElement">
+          <p class="productProperty">Total Stocks Available:</p>
+          <p class="productStock"></p>
+        </div>
+        <div class="productQuantityElement">
+          <p class="productProperty">Quantity(Pieces)</p>
+          <div class="stockElement">
+            <button class="cartIncrement">+</button>
+            <p class="productQuantity">1</p>
+            <button class="cartDecrement">-</button>
+          </div>
+        </div>
+        <button class="add-to-cart-button" data-id="">
+          <i class="fa-solid fa-cart-shopping"></i> Add To Cart
+        </button>
+      </article>
+    </div>
+  </template>
+
+  <footer class="section-footer">
+    <div class="footer-container container">
+      <div class="content_1">
+        <img src="/Images/ginkgomart lgo.png" alt="logo" />
+        <p>Welcome to Ginkgo Mart EcomStore, your ultimate destination for millet Products</p>
+        <img src="https://i.postimg.cc/Nj9dgJ98/cards.png" alt="cards" />
+      </div>
+      <div class="content_2">
+        <h4>SHOPPING</h4>
+        <a href="#">Millets Cafe</a>
+        <a href="#">Ginkgo Mart Store</a>
+        <a href="products.html">Products</a>
+        <a href="#">Sales & Discount</a>
+      </div>
+      <div class="content_3">
+        <h4>Experience</h4>
+        <a href="contact.html">Contact Us</a>
+        <a href="#">Payment Method</a>
+        <a href="#">Delivery</a>
+        <a href="#">Return and Exchange</a>
+      </div>
+      <div class="content_4">
+        <h4>NEWSLETTER</h4>
+        <p>Be the first to know about new<br />arrivals, sales & promos!</p>
+        <div class="f-mail">
+          <input type="email" placeholder="Your Email" />
+          <i class="bx bx-envelope"></i>
+        </div>
+        <hr />
+      </div>
+    </div>
+    <div class="f-design">
+      <div class="f-design-txt">
+        <p>Design and Code by Munish Kumar Sharma</p>
+      </div>
+    </div>
+  </footer>
+
+  <script type="module" src="js/products.js"></script>
+</body>
+</html>
